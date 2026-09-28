@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spotify to Songkick</title>
+  <link rel="stylesheet" href="sync.css">
+  <script type="module" src="sync.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Spotify → Songkick</h1>
+      <div class="actions"><button id="stop" hidden>Stop</button><button id="sync" class="primary">Sync</button></div>
+    </header>
+    <p id="status" role="status" aria-live="polite">Loading…</p>
+    <progress id="progress" hidden></progress>
+    <p id="setup" class="hint" hidden>In Spotify, open <strong>Your Library</strong>, keep it expanded in list view with the search box empty, then press Sync. Songkick just needs you signed in.</p>
+    <ul id="summary" class="summary"></ul>
+
+    <section id="needs" class="panel" hidden>
+      <div class="panel-head">
+        <h2>Needs you <span id="needs-count" class="count"></span></h2>
+        <button id="add" class="primary"></button>
+      </div>
+      <p class="hint">Ticked artists are added. Untick anything that looks wrong; it won't be suggested again.</p>
+      <div id="similar-block"><h3>Similar name</h3><ul id="similar" class="rows"></ul></div>
+      <div id="choose-block"><h3>Pick the right one</h3><ul id="choose" class="rows"></ul></div>
+      <div id="retry-block"><h3>Couldn't add yet <span class="hint">(retried on the next sync)</span></h3><ul id="retry" class="rows"></ul></div>
+    </section>
+
+    <input id="filter" type="search" placeholder="Find an artist…" aria-label="Find an artist">
+    <details id="none-group" class="panel"><summary>Not on Songkick <span class="count"></span></summary><ul id="none" class="rows"></ul></details>
+    <details id="added-group" class="panel"><summary>Added by this tool <span class="count"></span></summary><ul id="added" class="rows"></ul></details>
+    <details id="tracked-group" class="panel"><summary>Already on Songkick <span class="count"></span></summary><ul id="tracked" class="rows"></ul></details>
+
+    <footer><span id="scan-detail"></span><button id="clear" class="link">Clear local data</button></footer>
+  </main>
+</body>
+</html>

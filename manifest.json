@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Spotify to Songkick",
+  "version": "0.2.0",
+  "description": "Sync followed Spotify artists to Songkick using your signed-in browser tabs.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://open.spotify.com/*", "https://www.songkick.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Spotify to Songkick" },
+  "content_scripts": [
+    { "matches": ["https://open.spotify.com/*"], "js": ["src/spotify-content.js"] },
+    { "matches": ["https://www.songkick.com/*"], "js": ["src/songkick-content.js"] }
+  ]
+}
