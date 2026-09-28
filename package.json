@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test" },
+  "scripts": {
+    "test": "node --test",
+    "package": "mkdir -p dist && zip -FSqr dist/spotify-to-songkick.zip manifest.json background.js sync.html sync.css sync.js src icons -x \"*.DS_Store\"",
+    "store": "node store/render.mjs"
+  },
   "engines": { "node": ">=20" }
 }

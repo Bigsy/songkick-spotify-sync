@@ -1,5 +1,7 @@
 # Spotify to Songkick
 
+![Spotify to Songkick](store/out/promo-marquee-1400x560.png)
+
 A personal Manifest V3 Chrome extension that adds the artists you follow on Spotify to your Songkick tracked artists, using your signed-in browser tabs. Plain JavaScript; no API keys, hosted backend, build step, or runtime dependencies.
 
 ## Install and update
@@ -38,4 +40,8 @@ Artists already in your tracked list under the same or a similar name are left a
 
 ## Development
 
-Run `npm test` with Node.js 20 or later. Tests cover name matching and match tiers, bucket and selection logic, URL validation, the Track form safety checks, tracked-list pagination, and the virtualized Spotify scan, using pure logic and DOM-shaped test doubles. They do not prove current live-site behaviour; see [FEASIBILITY.md](FEASIBILITY.md) for what was checked live and [PLAN.md](PLAN.md) for scope and decisions.
+Run `npm test` with Node.js 20 or later. Tests cover name matching and match tiers, bucket and selection logic, URL validation, the Track form safety checks, tracked-list pagination, and the virtualized Spotify scan, using pure logic and DOM-shaped test doubles. They do not prove current live-site behaviour; see [FEASIBILITY.md](FEASIBILITY.md) for what was checked live.
+
+## Chrome Web Store
+
+`store/` holds the listing text ([LISTING.md](store/LISTING.md)), the [privacy policy](store/PRIVACY.md), and generated images in `store/out/`. `npm run store` re-renders the icon, screenshots and promo tiles from the real sync page with fictional demo artists (needs Google Chrome, ImageMagick and `rsvg-convert`). `npm run package` builds `dist/spotify-to-songkick.zip` for upload.

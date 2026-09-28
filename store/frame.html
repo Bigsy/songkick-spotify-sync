@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Store frame</title>
+<style>
+  :root { --bg: #101612; --text: #e8f3ea; --muted: #a4b7a8; --accent: #a1d9b1; --line: #314035; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: var(--w); height: var(--h); overflow: hidden; }
+  body { background: radial-gradient(1200px 700px at 85% 0%, #1f3627 0%, var(--bg) 60%); color: var(--text); font: 16px/1.45 system-ui, sans-serif; position: relative; }
+  .copy { position: absolute; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: -.01em; }
+  .brand img { width: 44px; height: 44px; margin: -6px; }
+  .eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { margin: 0 0 16px; font-size: 38px; line-height: 1.12; letter-spacing: -.025em; }
+  p { margin: 0; color: var(--muted); font-size: 17px; }
+  .window { position: absolute; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #101612; box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 0 1px rgba(161, 217, 177, .06); }
+  .bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #1a241d; border-bottom: 1px solid var(--line); }
+  .bar i { width: 11px; height: 11px; border-radius: 50%; background: #3b4b40; }
+  .bar span { margin-left: 12px; font-size: 12px; color: var(--muted); }
+  iframe { border: 0; transform-origin: 0 0; display: block; }
+  /* Screenshot: copy left, window right, bleeding off the bottom. */
+  .shot .copy { left: 64px; top: 0; bottom: 0; width: 330px; display: flex; flex-direction: column; justify-content: center; }
+  .shot .brand { position: absolute; top: 48px; }
+  .shot .window { left: 430px; top: 56px; width: 800px; height: 800px; border-bottom: 0; }
+  /* Small promo tile. */
+  .small .copy { inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }
+  .small .copy img { width: 112px; height: 112px; margin: -12px; }
+  .small h1 { font-size: 30px; margin: 6px 0 0; }
+  .small p { font-size: 15px; }
+  /* Marquee. */
+  .marquee .copy { left: 90px; top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; }
+  .marquee .copy img { width: 96px; height: 96px; margin: -12px -12px 18px; }
+  .marquee h1 { font-size: 52px; }
+  .marquee p { font-size: 20px; }
+  .marquee .window { left: 700px; top: 70px; width: 640px; height: 560px; border-bottom: 0; }
+</style>
+</head>
+<body>
+<script>
+  const params = new URLSearchParams(location.search);
+  const kind = params.get('kind') || 'shot';
+  const shots = {
+    needs: ['Spotify to Songkick', 'Only the artists that need you', 'One Sync adds every artist with an exact Songkick match. Near-matches arrive ticked for a quick glance.'],
+    choose: ['Spotify to Songkick', 'Several bands, one name?', 'When Songkick lists more than one artist with the same name, you pick the right one once and it is remembered.'],
+    progress: ['Spotify to Songkick', 'About two minutes for a thousand artists', 'Reads your whole Spotify library and Songkick list directly from your signed-in tabs. No accounts, keys or servers.'],
+    none: ['Spotify to Songkick', 'Nothing gets lost', 'Artists Songkick does not list yet stay visible, with near-miss spellings to check and a quick way to paste the right link.'],
+  };
+  const [w, h] = { shot: [1280, 800], small: [440, 280], marquee: [1400, 560] }[kind];
+  document.documentElement.style.setProperty('--w', `${w}px`);
+  document.documentElement.style.setProperty('--h', `${h}px`);
+  document.body.className = kind;
+  const icon = '<img src="/icons/icon128.png" alt="">';
+  const window_ = (demo, width, scale) => `<div class="window"><div class="bar"><i></i><i></i><i></i><span>Spotify to Songkick</span></div>
+    <iframe src="/sync.html?demo=${demo}" style="width:${width}px;height:${Math.ceil(900 / scale)}px;transform:scale(${scale})"></iframe></div>`;
+  if (kind === 'shot') {
+    const [brand, title, body] = shots[params.get('shot') || 'needs'];
+    document.body.innerHTML = `<div class="copy"><div class="brand">${icon}${brand}</div><p class="eyebrow">Chrome extension</p><h1>${title}</h1><p>${body}</p></div>${window_(params.get('shot') || 'needs', 900, 800 / 900)}`;
+  } else if (kind === 'small') {
+    document.body.innerHTML = `<div class="copy">${icon}<h1>Spotify → Songkick</h1><p>Your followed artists, tracked for gigs</p></div>`;
+  } else {
+    document.body.innerHTML = `<div class="copy">${icon}<h1>Spotify → Songkick</h1><p>Add the artists you follow on Spotify to Songkick in one click, so you never miss them live.</p></div>${window_('needs', 900, 640 / 900)}`;
+  }
+</script>
+</body>
+</html>

@@ -375,8 +375,8 @@ function render() {
     chip(size('tracked') + size('added'), 'on Songkick'),
     ...(size('added') ? [chip(size('added'), 'added by this tool')] : []),
     ...(needs ? [chip(needs, 'need you', true)] : []),
-    chip(size('none') + size('skipped'), 'not on Songkick'),
-    ...(pending ? [chip(pending, 'left to check · press Sync', true)] : []),
+    ...(size('none') + size('skipped') ? [chip(size('none') + size('skipped'), 'not on Songkick')] : []),
+    ...(pending ? [chip(pending, 'left to check', true)] : []),
   ] : []));
 
   const { targets } = selectedTargets(state);

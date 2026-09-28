@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Chrome Web Store guidance: 96x96 artwork inside 16px transparent padding. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f5a3d"/>
+      <stop offset="1" stop-color="#132319"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="96" height="96" rx="24" fill="url(#bg)"/>
+  <rect x="16.5" y="16.5" width="95" height="95" rx="23.5" fill="none" stroke="#a1d9b1" stroke-opacity=".25"/>
+  <g fill="#e6f5ea">
+    <ellipse cx="50" cy="79" rx="12.5" ry="9.5" transform="rotate(-22 50 79)"/>
+    <rect x="56.5" y="33" width="6.5" height="47" rx="2"/>
+    <path d="M59 33 L81 40.5 Q84 41.5 84 44.5 L84 52 Q84 55 81 54.2 L62 49 Z"/>
+  </g>
+  <circle cx="86" cy="86" r="16" fill="#a1d9b1" stroke="#132319" stroke-width="4"/>
+  <path d="M78.5 86.5 L84 92 L93.5 81.5" fill="none" stroke="#14281a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
